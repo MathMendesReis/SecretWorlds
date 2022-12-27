@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GlobalStyled } from "./components/globalStyled";
 import Home from "./components/pages/home";
 function App() {
 
@@ -6,6 +7,7 @@ function App() {
 
   return (
     <div>
+      <GlobalStyled />
       {page === "home" && <Home />}
     </div>
   );
