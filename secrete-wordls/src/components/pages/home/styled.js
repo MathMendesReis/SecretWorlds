@@ -8,6 +8,7 @@ export const StyledDiv = styled.div`
     padding-top: 5em;
     height: 100vh;
     background: linear-gradient(blue 0%, black 100%)
+
 `
 
 export const StyledH1 = styled.h1`

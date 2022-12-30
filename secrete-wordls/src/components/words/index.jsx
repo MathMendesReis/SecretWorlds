@@ -1,5 +1,5 @@
 
-export const WordList = {
+const WordList = {
     carro: ["Motor", "Porta", "Capô"],
     fruta: ["Banana", "Maça", "Pêra"],
     corpo: ["Braço", "Perna", "Cerébro"],
@@ -7,3 +7,5 @@ export const WordList = {
     programacao: ["Linguagem", "Framework", "JavaScript"],
     alimento: ["Arroz", "Feijão", "Carne"]
 };
+
+export default WordList;
