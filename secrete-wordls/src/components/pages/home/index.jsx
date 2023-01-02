@@ -7,7 +7,6 @@ const Home = ({ setPage, wordList, setWord, setLetter, setCategory, categoryRand
             <StyledH1>PALAVRAS SECRETAS</StyledH1>
             <StyledP>Clique no botão abaixo para começar a jogar</StyledP>
             <StyledButton onClick={() => {
-                console.log(tratamentoWordList())
                 categoryRandon()
                 setPage("game")
             }}>COMEÇAR O JOGO</StyledButton>

@@ -14,29 +14,32 @@ function App() {
   const [pontuacao, setPontuacao] = useState(0)
   const [letrasErradas, setLetrasErradas] = useState([])
   const [letrasCertas, setLetrasCertas] = useState([])
+  const [listaDePalavras, setListaDePalavras] = useState(wordList)
 
-  console.log(letter)
 
-  const tratamentoWordList = () => {
-    return console.log(typeof word)
+  const verificarLetra = (letra) => {
+    const copyLetrasCertas = [...letrasCertas]
+    const copyLetrasErradas = [...letrasErradas]
+    const verify = letter.find(le => le === letra)
+    if (verify) {
+      copyLetrasCertas.push(letra)
+      setLetrasCertas(copyLetrasCertas)
+      setPontuacao(pontuacao + 1)
+
+    } else {
+      copyLetrasCertas.push(letra)
+      setLetrasErradas(copyLetrasErradas)
+      setTentativas(tentativas - 1)
+
+    }
   }
-
-
   const categoryRandon = () => {
-    const category = Object.keys(wordList)[Math.floor(Math.random() * Object.keys(Object.keys(wordList)).length)];
-    const palavra = wordList[category][Math.floor(Math.random() * wordList[category].length)];
+    const category = Object.keys(listaDePalavras)[Math.floor(Math.random() * Object.keys(Object.keys(listaDePalavras)).length)];
+    const palavra = listaDePalavras[category][Math.floor(Math.random() * listaDePalavras[category].length)];
     return [setCategory(category), setWord(palavra), setLetter(palavra.split(""))]
   }
 
-  const endGame = () => {
-    if (tentativas === 0) {
-      setPage("end")
-    } else {
 
-    }
-
-
-  }
 
 
   return (
@@ -50,7 +53,7 @@ function App() {
         category={category}
         setCategory={setCategory}
         categoryRandon={categoryRandon}
-        tratamentoWordList={tratamentoWordList}
+        listaDePalavras={listaDePalavras}
       />}
       {page === "game" && <Game
         setPage={setPage}
@@ -63,11 +66,11 @@ function App() {
         category={category}
         pontuacao={pontuacao}
         setPontuacao={setPontuacao}
-        endGame={endGame}
         letrasErradas={letrasErradas}
         setLetrasErradas={setLetrasErradas}
         letrasCertas={letrasCertas}
         setLetrasCertas={setLetrasCertas}
+        verificarLetra={verificarLetra}
       />}
       {page === "end" && <End
         categoryRandon={categoryRandon}
