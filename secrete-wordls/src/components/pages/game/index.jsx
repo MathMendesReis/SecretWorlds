@@ -1,28 +1,10 @@
 import React, { useRef } from "react";
 import { AdvLatter, ButtonStyled, ContainerLetter, DicaTxt, H1, Input, SpanTent, StyledDiv, StyledDivGame, StyledInfo, StyledTxt } from "./styled";
 
-const Game = ({ letter, setGameLetter, gameLetter, tentativas, setTentativas, category, pontuacao, setPontuacao, endGame, setLetrasErradas, letrasErradas, letrasCertas, setLetrasCertas }) => {
+const Game = ({ letter, setGameLetter, gameLetter, tentativas, setTentativas, category, pontuacao, setPontuacao, endGame, setLetrasErradas, letrasErradas, letrasCertas, setLetrasCertas, verificarLetra }) => {
     const letterInputRef = useRef(null)
-    endGame()
-
-    const verificarLetra = (letra) => {
-        const copyLetrasCertas = [...letrasCertas]
-        const copyLetrasErradas = [...letrasErradas]
-        const verify = letter.find(le => le === letra)
 
 
-        if (verify) {
-            copyLetrasCertas.push(letra)
-            setLetrasCertas(copyLetrasCertas)
-            setPontuacao(pontuacao + 1)
-
-        } else {
-            copyLetrasCertas.push(letra)
-            setLetrasErradas(copyLetrasErradas)
-            setTentativas(tentativas - 1)
-
-        }
-    }
     return (
         <StyledDiv>
             <StyledInfo>
@@ -47,7 +29,8 @@ const Game = ({ letter, setGameLetter, gameLetter, tentativas, setTentativas, ca
                         value={gameLetter}
                         name="letter"
                         maxLength="1"
-                        ref={letterInputRef} onChange={(e) => { setGameLetter(e.target.value) }} />
+                        ref={letterInputRef}
+                        onChange={(e) => { setGameLetter(e.target.value) }} />
 
 
 

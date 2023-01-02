@@ -1,11 +1,11 @@
 
 const WordList = {
-    carro: ["Motor", "Porta", "Capô"],
-    fruta: ["Banana", "Maça", "Pêra"],
-    corpo: ["Braço", "Perna", "Cerébro"],
-    computador: ["Mouse", "Teclado", "Monitor"],
-    programacao: ["Linguagem", "Framework", "JavaScript"],
-    alimento: ["Arroz", "Feijão", "Carne"]
+    carro: ["motor", "porta", "capô"],
+    fruta: ["banana", "maça", "pêra"],
+    corpo: ["braço", "perna", "cerébro"],
+    computador: ["mouse", "teclado", "monitor"],
+    programacao: ["linguagem", "framework", "javascript"],
+    alimento: ["arroz", "feijão", "carne"]
 };
 
 export default WordList;
