@@ -60,3 +60,10 @@ export const ContainerLetter = styled.div`
     align-items: center;
 
 `
+
+export const TxtCategory = styled.span`
+    margin-left: 0.3em;
+    text-transform: uppercase;
+    color: yellow;
+
+`

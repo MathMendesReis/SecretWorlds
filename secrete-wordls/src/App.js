@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GlobalStyled } from "./components/globalStyled";
 import End from "./components/pages/end";
 import Game from "./components/pages/game";
@@ -15,6 +15,7 @@ function App() {
   const [letrasErradas, setLetrasErradas] = useState([])
   const [letrasCertas, setLetrasCertas] = useState([])
   const [listaDePalavras, setListaDePalavras] = useState(wordList)
+  const [letrasSemRepeticoes, setLetrasSemRepeticoes] = useState()
 
 
   const verificarLetra = (letra) => {
@@ -30,7 +31,6 @@ function App() {
       copyLetrasCertas.push(letra)
       setLetrasErradas(copyLetrasErradas)
       setTentativas(tentativas - 1)
-
     }
   }
   const categoryRandon = () => {
@@ -38,6 +38,17 @@ function App() {
     const palavra = listaDePalavras[category][Math.floor(Math.random() * listaDePalavras[category].length)];
     return [setCategory(category), setWord(palavra), setLetter(palavra.split(""))]
   }
+
+  const condicaoDerrota = () => {
+    if (tentativas === 0) {
+      setPage("end")
+    }
+  }
+
+  useEffect(() => {
+    condicaoDerrota()
+  }, [tentativas])
+
 
 
 
@@ -71,6 +82,8 @@ function App() {
         letrasCertas={letrasCertas}
         setLetrasCertas={setLetrasCertas}
         verificarLetra={verificarLetra}
+        categoryRandon={categoryRandon}
+
       />}
       {page === "end" && <End
         categoryRandon={categoryRandon}

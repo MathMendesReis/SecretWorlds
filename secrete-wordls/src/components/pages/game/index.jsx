@@ -1,17 +1,36 @@
-import React, { useRef } from "react";
-import { AdvLatter, ButtonStyled, ContainerLetter, DicaTxt, H1, Input, SpanTent, StyledDiv, StyledDivGame, StyledInfo, StyledTxt } from "./styled";
+import React, { useEffect, useRef } from "react";
+import { AdvLatter, ButtonStyled, ContainerLetter, DicaTxt, H1, Input, SpanTent, StyledDiv, StyledDivGame, StyledInfo, StyledTxt, TxtCategory } from "./styled";
 
-const Game = ({ letter, setGameLetter, gameLetter, tentativas, setTentativas, category, pontuacao, setPontuacao, endGame, setLetrasErradas, letrasErradas, letrasCertas, setLetrasCertas, verificarLetra }) => {
+const Game = ({ letter, setGameLetter, gameLetter, tentativas, setTentativas, category, pontuacao, setPontuacao, endGame, setLetrasErradas, letrasErradas, letrasCertas, setLetrasCertas, verificarLetra, categoryRandon }) => {
     const letterInputRef = useRef(null)
 
+    // console.log(letter)
+    const parseLetter = () => {
+        const setLetter = new Set(letter)
+        const newArray = [...setLetter]
+        return newArray;
+    }
+
+    useEffect(() => {
+        const setLetter = parseLetter()
+        if (setLetter.length === letrasCertas.length) {
+            categoryRandon()
+            setTentativas(3)
+            setLetrasCertas([])
+            setLetrasErradas([])
+        }
+    }, [letrasCertas])
 
     return (
         <StyledDiv>
             <StyledInfo>
                 <StyledTxt>Pontuação: {pontuacao}</StyledTxt>
                 <H1>Adivinhe a palavra</H1>
-                <DicaTxt>Dica sobre a palavra:<span>{category}</span></DicaTxt>
+                <DicaTxt>Dica sobre a palavra:<TxtCategory>{category}</TxtCategory></DicaTxt>
             </StyledInfo>
+            {/* <div>
+                <p>Letras erradas : {letrasErradas}</p>
+            </div> */}
             <StyledDivGame>
                 <form>
                     {letter.map((letra, index) =>
@@ -31,9 +50,6 @@ const Game = ({ letter, setGameLetter, gameLetter, tentativas, setTentativas, ca
                         maxLength="1"
                         ref={letterInputRef}
                         onChange={(e) => { setGameLetter(e.target.value) }} />
-
-
-
                     <ButtonStyled onClick={() => {
                         verificarLetra(gameLetter)
                         letterInputRef.current.focus()
