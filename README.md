@@ -73,4 +73,4 @@ acesse pelo navegador: http:http://localhost:3000
 
 -[ ] Criar pagina de fim de jogo.
 
--[ ] Resolver bugs.
+-[ x] Resolver bugs.
