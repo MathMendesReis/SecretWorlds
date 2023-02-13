@@ -11,9 +11,9 @@ export const GlobalState = ({ children }) => {
         programacao: ["linguagem", "framework", "javascript"],
         alimento: ["arroz", "feijão", "carne"]
     }
-    const [word, setWord] = useState([])
-    const [category, setCategory] = useState('')
-    const [letter, setLetter] = useState('')
+    const [word, setWord] = useState(['a', 'b'])
+    const [category, setCategory] = useState('teste')
+    const [letter, setLetter] = useState([])
     const [lettersFounds, setLetterFounds] = useState([])
     const [lettersNotFounds, setLetterNotFounds] = useState([])
     const [attempts, setAttempts] = useState(3)
@@ -29,9 +29,11 @@ export const GlobalState = ({ children }) => {
     const randonCategory = () => {
         const allCategory = Object.keys(words)
         const category = allCategory[Math.floor(Math.random() * Object.keys(allCategory).length)]
-        const wordRandom = words[category][Math.floor(Math.random() * Object.keys(allCategory).length)]
+        const wordRandom = words[category][Math.floor(Math.random() * 3)]
         const arrayCaracteres = wordRandom.split('')
-        console.log(wordRandom)
+        console.log("palavra" + " " + wordRandom)
+        console.log("categoria" + " " + category)
+        console.log(Object.keys(category).length)
 
         setCategory(category)
         setWord(arrayCaracteres)

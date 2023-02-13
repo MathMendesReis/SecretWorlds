@@ -12,7 +12,6 @@ const Game = () => {
     letter,
     attempts,
     lettersNotFounds,
-    losingCondition,
   } = context;
   return (
     <DivContainer>

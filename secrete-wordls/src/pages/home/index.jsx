@@ -8,7 +8,7 @@ import { GlobalContext } from "../../context/GlobalContex";
 const Home = () => {
   const navigate = useNavigate();
   const context = useContext(GlobalContext);
-  const { randoWord, randonCategory } = context;
+  const { randonCategory } = context;
 
   return (
     <Body>
@@ -17,7 +17,6 @@ const Home = () => {
         onClick={() => {
           goGame(navigate);
           randonCategory();
-          randoWord();
         }}
       >
         começar partida
