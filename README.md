@@ -1,6 +1,6 @@
 # Projeto React API Pokemons
 
-![Palavras Secretas](./PokeAPI/src/Readme/assests/homePage.png)
+![Palavras Secretas](./secrete-wordls/src/img/homePage.png)
 
 Aplicação que reproduz um joguinho de acertar palavras
 
@@ -17,23 +17,19 @@ Aplicação que reproduz um joguinho de acertar palavras
 
 - O site tem 3 páginas: Começar partida, Jogo;
 - **Página Começar Partida:**
-	<!-- - [X]  Mostra uma lista de Pokemons; -->
-	<!-- - [X] Cada Pokemon e representado por um Card; -->
-	<!-- - [X] Em cada card de Pokemon tem um botão para adicioná-lo à Pokedex e um outro botão para acessar os detalhes do Pokemon; -->
-	<!-- - [X] Header dessa página terá um botão para acessar a página da Pokedex; -->
+	- [X]  Mostra titulo do jogo;
+	- [X]  Mostra botão de começar jogo;
 - **Página Jogo**
-	<!-- - [X] Renderiza uma lista de pokémons que foram adicionados na pokedex; -->
-	<!-- - [X] Em cada card de Pokemon tem um botão para removê-lo da Pokedex e um outro botão para acessar os detalhes do Pokemon. -->
-	<!-- - [X] Header deve tem um botão para voltar para a Home -->
-	<!-- - [X] Não deve ser possível adicionar o mesmo Pokemon duas vezes na Pokedex -->
+	- [X] Monstrar pontuação;
+	- [X] Monstrar quantidade de chances que o jogador tem.
+	- [X] Sortear letra e tema aletatorio.
 
 
     ## 👀Layout
-<!-- ![Pagina Home](./PokeAPI/src/Readme/assests/headerHome.png) -->
+![Pagina Home](./secrete-wordls/src/img/homePage.png)
 
-<!-- ![Pagina Pokedex](./PokeAPI/src/Readme/assests/pokedex.png) -->
+![Pagina Pokedex](./secrete-wordls/src/img/game.png)
 
-<!-- ![Pagina Detalhes](./PokeAPI/src/Readme/assests/detalhes.png) -->
 
 
 ## Demonstração
@@ -47,7 +43,7 @@ Aplicação que reproduz um joguinho de acertar palavras
 $ git clone https://github.com/MathMendesReis/projeto-react-apis.git
 
 # Acesse a pasta do projeto no seu terminal
-<!-- $  cd PokeAPI/ -->
+$ cd secrete-wordls/
 
 #instale as depedências
 <!-- $ npm install -->
@@ -73,4 +69,8 @@ acesse pelo navegador: http:http://localhost:3000
 
 ## Proximos passos
 
--[ ] Torna o site responsivo
+-[ ] Torna o site responsivo.
+
+-[ ] Criar pagina de fim de jogo.
+
+-[ ] Resolver bugs.
