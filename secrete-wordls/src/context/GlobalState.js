@@ -31,10 +31,6 @@ export const GlobalState = ({ children }) => {
         const category = allCategory[Math.floor(Math.random() * Object.keys(allCategory).length)]
         const wordRandom = words[category][Math.floor(Math.random() * 3)]
         const arrayCaracteres = wordRandom.split('')
-        console.log("palavra" + " " + wordRandom)
-        console.log("categoria" + " " + category)
-        console.log(Object.keys(category).length)
-
         setCategory(category)
         setWord(arrayCaracteres)
     }
