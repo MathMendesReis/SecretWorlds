@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContex";
 import { CardLetter, ContainerWord, DivContainer, InputLetter } from "./styled";
 
@@ -12,11 +14,25 @@ const Game = () => {
     letter,
     attempts,
     lettersNotFounds,
+    score,
+    setLetter,
+    victoryCondition,
+    randonCategory,
   } = context;
+  const navigate = useNavigate();
+  useEffect(() => {
+    victoryCondition(navigate);
+  }, [lettersFounds, lettersNotFounds]);
+
+  const letterInputRef = useRef();
   return (
     <DivContainer>
-      <h3>pontuação</h3>
-      <h3>você ainda tem {attempts} chances</h3>
+      <h3>pontuação: {score}</h3>
+      {attempts > 0 ? (
+        <h3>você ainda tem {attempts} chances</h3>
+      ) : (
+        <h3>você não pode mais errar.</h3>
+      )}
       <h3>dica...{category}</h3>
       <ContainerWord>
         {word.map((letter, index) =>
@@ -30,19 +46,29 @@ const Game = () => {
       <p>
         Letras erradas:
         {lettersNotFounds.map((letter, index) => (
-          <span key={index}> {letter.toLowerCase()} </span>
+          <span key={index}> {letter} </span>
         ))}
       </p>
       <form>
-        <label htmlFor={letter}>Digite uma letra</label>
+        <label>Digite uma letra</label>
         <InputLetter
+          ref={letterInputRef}
           type="text"
           maxLength="1"
           onChange={(e) => {
-            verifiedLyrics(e.target.value);
+            setLetter(e.target.value);
           }}
         />
       </form>
+      <button
+        onClick={() => {
+          verifiedLyrics(navigate);
+          // randonCategory();
+          letterInputRef.current.focus();
+        }}
+      >
+        jogar
+      </button>
     </DivContainer>
   );
 };
