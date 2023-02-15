@@ -20,7 +20,6 @@ const EndGame = () => {
             onClick={() => {
               goHome(navigate);
               setGameOver(false);
-              console.log(gameOver);
             }}
           >
             reiniciar game

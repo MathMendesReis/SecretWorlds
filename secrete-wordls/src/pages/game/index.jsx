@@ -2,7 +2,14 @@ import React, { useContext, useRef } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContex";
-import { CardLetter, ContainerWord, DivContainer, InputLetter } from "./styled";
+import {
+  ButtonGame,
+  CardLetter,
+  ContainerForm,
+  ContainerWord,
+  DivContainer,
+  InputLetter,
+} from "./styled";
 
 const Game = () => {
   const context = useContext(GlobalContext);
@@ -18,11 +25,14 @@ const Game = () => {
     setLetter,
     victoryCondition,
     randonCategory,
+    loseCondition,
   } = context;
   const navigate = useNavigate();
   useEffect(() => {
     victoryCondition(navigate);
-  }, [lettersFounds, lettersNotFounds]);
+  }, [letter]);
+
+  useEffect(() => {}, [lettersNotFounds]);
 
   const letterInputRef = useRef();
   return (
@@ -49,26 +59,29 @@ const Game = () => {
           <span key={index}> {letter} </span>
         ))}
       </p>
-      <form>
-        <label>Digite uma letra</label>
-        <InputLetter
-          ref={letterInputRef}
-          type="text"
-          maxLength="1"
-          onChange={(e) => {
-            setLetter(e.target.value);
+      <ContainerForm>
+        <form>
+          <label>Digite uma letra</label>
+          <InputLetter
+            ref={letterInputRef}
+            type="text"
+            maxLength="1"
+            onChange={(e) => {
+              setLetter(e.target.value);
+            }}
+          />
+        </form>
+        <ButtonGame
+          onClick={() => {
+            verifiedLyrics(navigate);
+            loseCondition(navigate);
+            // randonCategory();
+            letterInputRef.current.focus();
           }}
-        />
-      </form>
-      <button
-        onClick={() => {
-          verifiedLyrics(navigate);
-          // randonCategory();
-          letterInputRef.current.focus();
-        }}
-      >
-        jogar
-      </button>
+        >
+          jogar
+        </ButtonGame>
+      </ContainerForm>
     </DivContainer>
   );
 };

@@ -25,25 +25,36 @@ export const GlobalState = ({ children }) => {
     const [gameOver, setGameOver] = useState(false)
 
 
-    console.log(gameOver);
 
 
 
-    const victoryCondition = (navigate) => {
-        var novaArr = word.filter((letter, i) => word.indexOf(letter) === i);// removendo valores repetidos
+    const victoryCondition = () => {
+        let novaArr = word.filter((letter, i) => word.indexOf(letter) === i);// removendo valores repetidos
         if (novaArr.length === lettersFounds.length) {
             randonCategory()
-        } else {
+            setScore(score + 10)
+        }
+
+    }
+
+    const loseCondition = (navigate) => {
+        const verifiedFounds = word.find(le => le === letter)
+        console.log(verifiedFounds)
+        if (verifiedFounds === undefined) {
             if (attempts > 0) {
                 setAttempts(attempts - 1)
             } else {
-                console.log("pica")
                 GoEndGame(navigate)
-                timeOut()
+                setGameOver(true)
+                // setTimeout(function () {
+                //     setGameOver(true)
+                // }, 1500)
+
             }
         }
-    }
 
+
+    }
 
 
 
@@ -52,10 +63,12 @@ export const GlobalState = ({ children }) => {
         // setTimeout(setGameOver(true), 300)
         setTimeout(function () {
             setGameOver(true)
-        }, 3000)
+        }, 1500)
+        // setGameOver(true)
     }
-
-
+    useEffect(() => {
+        timeOut()
+    })
     const randonCategory = () => {
         const allCategory = Object.keys(words)
         const category = allCategory[Math.floor(Math.random() * Object.keys(allCategory).length)]
@@ -67,6 +80,9 @@ export const GlobalState = ({ children }) => {
         setLetterNotFounds([])
         setAttempts(3)
     }
+
+
+
 
     const verifiedLyrics = (navigate) => {
         const verified = word.find(le => le === letter)
@@ -116,7 +132,8 @@ export const GlobalState = ({ children }) => {
         gameOver,
         timeOut,
         setLetterFounds,
-        setGameOver
+        setGameOver,
+        loseCondition
     }
     return (
         <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
