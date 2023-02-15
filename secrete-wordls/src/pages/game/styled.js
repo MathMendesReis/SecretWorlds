@@ -38,3 +38,15 @@ export const InputLetter = styled.input`
     text-transform: uppercase;
     font-size: 1.5vw;
 `
+
+export const ContainerForm = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+`
+
+export const ButtonGame = styled.button`
+height: 50px;
+width: 65px;
+`

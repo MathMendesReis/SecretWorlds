@@ -1,6 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContex";
-import { CardLetter, ContainerWord, DivContainer, InputLetter } from "./styled";
+import {
+  ButtonGame,
+  CardLetter,
+  ContainerForm,
+  ContainerWord,
+  DivContainer,
+  InputLetter,
+} from "./styled";
 
 const Game = () => {
   const context = useContext(GlobalContext);
@@ -12,11 +21,28 @@ const Game = () => {
     letter,
     attempts,
     lettersNotFounds,
+    score,
+    setLetter,
+    victoryCondition,
+    randonCategory,
+    loseCondition,
   } = context;
+  const navigate = useNavigate();
+  useEffect(() => {
+    victoryCondition(navigate);
+  }, [letter]);
+
+  useEffect(() => {}, [lettersNotFounds]);
+
+  const letterInputRef = useRef();
   return (
     <DivContainer>
-      <h3>pontuação</h3>
-      <h3>você ainda tem {attempts} chances</h3>
+      <h3>pontuação: {score}</h3>
+      {attempts > 0 ? (
+        <h3>você ainda tem {attempts} chances</h3>
+      ) : (
+        <h3>você não pode mais errar.</h3>
+      )}
       <h3>dica...{category}</h3>
       <ContainerWord>
         {word.map((letter, index) =>
@@ -30,19 +56,32 @@ const Game = () => {
       <p>
         Letras erradas:
         {lettersNotFounds.map((letter, index) => (
-          <span key={index}> {letter.toLowerCase()} </span>
+          <span key={index}> {letter} </span>
         ))}
       </p>
-      <form>
-        <label htmlFor={letter}>Digite uma letra</label>
-        <InputLetter
-          type="text"
-          maxLength="1"
-          onChange={(e) => {
-            verifiedLyrics(e.target.value);
+      <ContainerForm>
+        <form>
+          <label>Digite uma letra</label>
+          <InputLetter
+            ref={letterInputRef}
+            type="text"
+            maxLength="1"
+            onChange={(e) => {
+              setLetter(e.target.value);
+            }}
+          />
+        </form>
+        <ButtonGame
+          onClick={() => {
+            verifiedLyrics(navigate);
+            loseCondition(navigate);
+            // randonCategory();
+            letterInputRef.current.focus();
           }}
-        />
-      </form>
+        >
+          jogar
+        </ButtonGame>
+      </ContainerForm>
     </DivContainer>
   );
 };
