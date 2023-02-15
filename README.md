@@ -34,7 +34,7 @@ Aplicação que reproduz um joguinho de acertar palavras
 
 ## Demonstração
 
-<!-- [Link demonstração](https://projetolabenuapismatheusbarbosaa.surge.sh/) -->
+[Link demonstração](https://palavrassecretasteste.surge.sh/)
 
 ## Como rodar esse projeto?
 
