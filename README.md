@@ -34,7 +34,7 @@ Aplicação que reproduz um joguinho de acertar palavras
 
 ## Demonstração
 
-[Link demonstração](https://palavrassecretasteste.surge.sh/)
+[Link demonstração](https://loja-virtual-zqvn-git-master-mathmendesreis.vercel.app/)
 
 ## Como rodar esse projeto?
 
