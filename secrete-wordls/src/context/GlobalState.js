@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GoEndGame } from '../router/navegation'
 import { GlobalContext } from './GlobalContex'
-// import { useNavigate } from "react-router-dom"
 
 
 
@@ -27,7 +26,7 @@ export const GlobalState = ({ children }) => {
 
 
 
-
+    console.log(gameOver)
     const victoryCondition = () => {
         let novaArr = word.filter((letter, i) => word.indexOf(letter) === i);// removendo valores repetidos
         if (novaArr.length === lettersFounds.length) {
@@ -39,16 +38,14 @@ export const GlobalState = ({ children }) => {
 
     const loseCondition = (navigate) => {
         const verifiedFounds = word.find(le => le === letter)
-        console.log(verifiedFounds)
         if (verifiedFounds === undefined) {
             if (attempts > 0) {
                 setAttempts(attempts - 1)
             } else {
                 GoEndGame(navigate)
-                setGameOver(true)
-                // setTimeout(function () {
-                //     setGameOver(true)
-                // }, 1500)
+                setTimeout(function () {
+                    setGameOver(true)
+                }, 2000)
 
             }
         }
@@ -66,9 +63,7 @@ export const GlobalState = ({ children }) => {
         }, 1500)
         // setGameOver(true)
     }
-    useEffect(() => {
-        timeOut()
-    })
+
     const randonCategory = () => {
         const allCategory = Object.keys(words)
         const category = allCategory[Math.floor(Math.random() * Object.keys(allCategory).length)]
