@@ -45,7 +45,6 @@ export const GlobalState = ({ children }) => {
                 GoEndGame(navigate)
                 setTimeout(function () {
                     setGameOver(true)
-
                 }, 2000)
 
             }
